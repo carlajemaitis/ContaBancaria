@@ -1,24 +1,25 @@
 package conta;
 
 import java.util.Scanner;
-import conta.model.Conta;
 import conta.util.Cores;
+import conta.model.ContaCorrente;
+import conta.model.ContaPoupanca;
 
 public class Menu 
 {
 
 	public static void main(String[] args) 
 	{
-		
-		Conta c1 = new Conta(1, 123, 1, "Adriana", 10000.0f);
-		c1.visualizar();
-		c1.sacar(12000.0f);
-		c1.visualizar();
-		c1.depositar(5000.0f);
-		c1.visualizar();
-		
+		ContaCorrente cc1 = new ContaCorrente (2, 123, 1, "Guilherme Soares", 700.0f, 5000.0f); 
+			cc1.visualizar();
+			cc1.sacar(300.0f);
+			
+		ContaPoupanca cp1 = new ContaPoupanca (3, 123, 2, "Olivia Guimarães", 4500.0f, 13);
+			cp1.visualizar();
+			cp1.sacar(1200.0f);
+			
 		Scanner leia = new Scanner(System.in);
-
+		
 		int opcao;
 
 		while (true)
@@ -26,7 +27,7 @@ public class Menu
 
 			System.out.println("\n\n*****************************************************");
 			System.out.println("                                                     ");
-			System.out.println("                BANCO DO BRAZIL COM Z                ");
+			System.out.println("                BANCO GENERATION                ");
 			System.out.println("                                                     ");
 			System.out.println("*****************************************************");
 			System.out.println("                                                     ");
@@ -48,7 +49,7 @@ public class Menu
 
 			if (opcao == 9) 
 			{
-                 System.out.println(Cores.TEXT_WHITE_BOLD + "\nBanco do Brazil com Z - O seu Futuro começa aqui!");
+                 System.out.println(Cores.TEXT_WHITE_BOLD + "\nBanco Generation - O seu Futuro começa aqui!");
  				sobre();
                  leia.close();
  				System.exit(0);

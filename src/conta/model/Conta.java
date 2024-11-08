@@ -1,12 +1,12 @@
 package conta.model;
 
-public class Conta {
+public abstract class Conta { 
 
 	private int numero;
 	private int agencia;
 	private int tipo;
 	private String titular;
-	private float saldo;
+	protected float saldo; //Posso usar o protected? Para conseguir usar a variável na subclasse ContaCorrente
 	
 	public Conta(int numero, int agencia, int tipo, String titular, float saldo) {
 		this.numero = numero;
@@ -59,17 +59,25 @@ public class Conta {
 	public boolean sacar(float valor) {
 		
 		if (this.getSaldo() < valor) {
-			System.out.println("\n>>>> Saldo insuficiente! <<<<");
+			System.out.println("\n>>>> Saque de " + valor + " <<<<");
+			System.out.println(">>>> Seu saldo é insuficiente! <<<<");
+			System.out.println(">>>> Faça um saque de até " + this.saldo + " <<<<");
 			return false;
 		}
 		
 		this.setSaldo(this.getSaldo() - valor);
+		System.out.println("\n>>>> Saque de " + valor + " <<<<");
+		System.out.println(">>>> Operação realizada com sucesso! <<<<");
+		System.out.println(">>>> Saldo atual: " + this.saldo + " <<<<");
 		return true;
 	}
 	
 	public void depositar(float valor) {
 		
 		this.setSaldo(this.getSaldo() + valor);
+		System.out.println("\n>>>> Depósito de " + valor + " <<<<");
+		System.out.println(">>>> Operação realizada com sucesso! <<<<");
+		System.out.println(">>>> Saldo atual: " + this.saldo + " <<<<");
 	}
 	
 	public void visualizar() {
@@ -86,7 +94,7 @@ public class Conta {
 		}
 		
 		System.out.println("\n\n*******************************************************");
-		System.out.println("Dados da conta:");
+		System.out.println("                 DADOS DA CONTA:");
 		System.out.println("*******************************************************");
 		System.out.println("Número da conta: " + this.numero);
 		System.out.println("Agência: " + this.agencia);
