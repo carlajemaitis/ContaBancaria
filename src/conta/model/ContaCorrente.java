@@ -18,18 +18,29 @@ public class ContaCorrente extends Conta {
 	}
 	
 	@Override
-	public boolean sacar (float valor) {
+	public boolean sacar (float valor, int tipo_saque) {
 		if (this.getSaldo() + this.getLimite() < valor) {
+			if(tipo_saque == 2){
 			System.out.println("\n>>>> Saque de " + valor + " <<<<");
 			System.out.println(">>>> Seu saldo é insuficiente! <<<<");
 			System.out.println(">>>> Faça um saque de até " + saldo + " <<<<");
 			return false;
+			}
+			else {
+				System.out.println("\n>>>> Não foi possível fazer a transferência, saldo insuficiente, seu saldo é de:" + this.getSaldo() + "<<<<");
+				return false;
+			}
 		}
 	
-		this.setSaldo(this.getSaldo() - valor);
+	this.setSaldo(this.getSaldo() - valor);
+		if(tipo_saque == 2) {
 		System.out.println("\n>>>> Saque de " + valor + " <<<<");
 		System.out.println(">>>> Operação realizada com sucesso! <<<<");
 		System.out.println(">>>> Saldo atual: " + saldo + " <<<<");
+		}
+		else {
+			System.out.println("\n>>>> Sua tranferência de " + valor + " foi realizada com sucesso. <<<<");
+		}
 		return true;
 	}
 	

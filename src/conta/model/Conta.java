@@ -56,28 +56,44 @@ public abstract class Conta {
 		this.saldo = saldo;
 	}
 	
-	public boolean sacar(float valor) {
+	public boolean sacar(float valor, int tipo_saque) {
+		
+		// 1-transf ou 2-saque
 		
 		if (this.getSaldo() < valor) {
+			if(tipo_saque == 2){
 			System.out.println("\n>>>> Saque de " + valor + " <<<<");
 			System.out.println(">>>> Seu saldo é insuficiente! <<<<");
 			System.out.println(">>>> Faça um saque de até " + this.saldo + " <<<<");
 			return false;
+			}
+			else {
+				System.out.println("\n>>>> Não foi possível fazer a transferência, saldo insuficiente, seu saldo é de:" + this.getSaldo() + "<<<<");
+				return false;
+			}
 		}
 		
 		this.setSaldo(this.getSaldo() - valor);
-		System.out.println("\n>>>> Saque de " + valor + " <<<<");
-		System.out.println(">>>> Operação realizada com sucesso! <<<<");
-		System.out.println(">>>> Saldo atual: " + this.saldo + " <<<<");
-		return true;
-	}
+			if(tipo_saque == 2) {
+			System.out.println("\n>>>> Saque de " + valor + " <<<<");
+			System.out.println(">>>> Operação realizada com sucesso! <<<<");
+			System.out.println(">>>> Saldo atual: " + this.saldo + " <<<<");
+			}
+			else {
+				System.out.println("\n>>>> Sua tranferência de " + valor + " foi realizada com sucesso. <<<<");
+			}
+			return true;
+		}
 	
-	public void depositar(float valor) {
+	public void depositar(float valor, int tipo_deposito) {
 		
+		// 1-deposito ou 2-transf
 		this.setSaldo(this.getSaldo() + valor);
+		if(tipo_deposito == 1) {
 		System.out.println("\n>>>> Depósito de " + valor + " <<<<");
 		System.out.println(">>>> Operação realizada com sucesso! <<<<");
 		System.out.println(">>>> Saldo atual: " + this.saldo + " <<<<");
+		}
 	}
 	
 	public void visualizar() {
